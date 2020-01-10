@@ -21,17 +21,37 @@ const config = require('./config.js');
 const mongoose = require('mongoose');
 require('./product.routes.js')(app);
 
-mongoose.Promise = global.Promise;
 
-// Connecting to the database
- mongoose.connect(config.url, {
-    useNewUrlParser: true
-}).then(() => {
-    console.log("Successfully connected to the database");    
-}).catch(err => {
-    console.log('Could not connect to the database. Exiting now...', err);
-    process.exit();
-});
+mongoose.connect(
+    config.url,
+    {
+      useNewUrlParser: true
+    }
+  ),
+    () => {
+      try {
+        //something
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  const connection = mongoose.connection;
+
+  connection.once('open', () => {
+    console.log('🖥 Connection to DB was succesful');
+  });
+
+// mongoose.Promise = global.Promise;
+
+// // Connecting to the database
+//  mongoose.connect(config.url, {
+//     useNewUrlParser: true
+// }).then(() => {
+//     console.log("Successfully connected to the database");    
+// }).catch(err => {
+//     console.log('Could not connect to the database. Exiting now...', err);
+//     process.exit();
+// });
 
 
 
