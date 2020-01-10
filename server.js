@@ -24,9 +24,7 @@ require('./product.routes.js')(app);
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
-
-const connect = async function () {
-  mongoose.connect(config.url, {
+ mongoose.connect(config.url, {
     useNewUrlParser: true
 }).then(() => {
     console.log("Successfully connected to the database");    
@@ -34,15 +32,7 @@ const connect = async function () {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
-};
 
-(async () => {
-   try {
-    const connected = await connect();
-   } catch(e) {
-    console.log('Error happend while connecting to the DB: ', e.message)
-   }
- })();
 
 
 // default route
