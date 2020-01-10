@@ -21,7 +21,7 @@ const config = require('./config.js');
 const mongoose = require('mongoose');
 require('./product.routes.js')(app);
 
-//mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
 // Connecting to the database
  mongoose.connect(config.url, {
